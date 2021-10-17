@@ -1,0 +1,28 @@
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <center><button id="b">Piesek!</button></center>
+    <div id="zdj"></div>
+    <script>
+      document.getElementById("b").addEventListener(
+        "click",
+        () => {
+          var http = new XMLHttpRequest();
+          var url = "https://dog.ceo/api/breeds/image/random";
+          http.open("GET", url, true);
+          http.send();
+          http.onload = (s_) => {
+            var json = JSON.parse(http.responseText);
+            var to = '<img src="' + json.message + '" width="100%" height="100%">'
+            document.getElementById("zdj").innerHTML = to;
+          };
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
